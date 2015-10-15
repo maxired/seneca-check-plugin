@@ -1,7 +1,14 @@
 var checkRepo = require('..').checkRepo
 
+if (process.argv.length !== 4) {
+  console.error('You should provide 2 arguments, both following the syntax <githubusername/githubrepo> ')
+  process.exit(1)
+}
 
-check('maxired/seneca-skeleton', 'rjrodger/seneca-vcache', function(err, good){
+console.log(process.argv)
+var orig = process.argv[2]
+var tocheck = process.argv[3]
 
-console.log(err, good);
+checkRepo(orig, tocheck, function (err, good) {
+  console.log(err, good)
 })
