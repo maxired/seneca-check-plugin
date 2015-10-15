@@ -4,17 +4,24 @@
   "description": "",
   "main": "lib/index.js",
   "bin": {
-    "seneca-check-plugin" : "bin/check.js",
-    "seneca-check-plugin-continue" : "bin/checkFolder.js" },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "seneca-check-plugin": "bin/check.js",
+    "seneca-check-plugin-continue": "bin/checkFolder.js"
   },
-  "author": "",
-  "license": "ISC",
+  "scripts": {
+    "test": "lab test/*.test.js -r console -v -L"
+  },
+  "author": "Maxence Dalmais",
+  "license": "MIT",
   "dependencies": {
     "async": "^1.4.2",
     "extfs": "0.0.7",
+    "lodash": "^3.10.1",
     "nodegit": "^0.5.0",
     "promise": "^7.0.4"
+  },
+  "devDependencies": {
+    "eslint-config-standard": "^4.4.0",
+    "eslint-plugin-standard": "^1.3.1",
+    "lab": "^6.2.0"
   }
 }
