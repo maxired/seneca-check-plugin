@@ -43,7 +43,7 @@ var tocheck = process.argv[process.argv.length - 1]
 
 checkMethod(orig, tocheck, function (err, good) {
   if (err) {
-    console.err(err, good)
+    console.error(err, good)
     return
   }
 
