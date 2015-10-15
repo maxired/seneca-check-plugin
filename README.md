@@ -22,10 +22,13 @@ If you're using this module, and need help, you can:
 
 
 ## Install
-To install, simply use npm. Remember you will need to install [Seneca.js][] if you haven't already.
+To install from master, simply use npm link.
 
 ```sh
-npm install -g seneca-check-plugin
+git clone https://github.com/maxired/seneca-check-plugin
+cd seneca-check-plugin
+npm install
+npm link
 ```
 
 ## Quick Example
