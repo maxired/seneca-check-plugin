@@ -7,10 +7,10 @@
 
 [![js-standard-style][standard-badge]][standard-style]
 
-A Seneca tool to check conformitance of plugins with others
+A Seneca tool to check conformance of plugins with others
 
 - __Version:__ 0.0.1
-- __Node:__ 0.10, 0.11, 0.12, 4
+- __Node:__ 0.10, 0.12, 4
 
 If you are new to Seneca in general, please take a look at [senecajs.org][]. We have everything from tutorials to sample apps to help get you up and running quickly.
 
@@ -30,10 +30,28 @@ npm install -g seneca-check-plugin
 
 ## Quick Example
 
+Before started, be sure to be in a clean directory.
+Running the script will create two directory, `default` and `to-check`
+
 The goal
 ```bash
 seneca-check-plugin <githubUsername/githubRepo>
 ```
+
+If everything look goods you should see the following message: `everything looks good`
+
+In case of error, it will be described in the command line
+What you want do is going inside the `to-check` directory and fix your error
+
+Then, go back in the previous directory and run
+```bash
+seneca-check-plugin continue
+```
+
+Proceed the same way as long as your have error.
+
+Then, it says that your project is good. this is ONLY REGARDING BASIC ATTRIBUTES
+**If you change anything to your code, or package.json, please run `npm install` and `npm test` before going further**
 
 ## Contributing
 The [Senecajs org][] encourages open participation. If you feel you can help in any way, be it with

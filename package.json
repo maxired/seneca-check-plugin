@@ -4,8 +4,7 @@
   "description": "",
   "main": "lib/index.js",
   "bin": {
-    "seneca-check-plugin": "bin/check.js",
-    "seneca-check-plugin-continue": "bin/checkFolder.js"
+    "seneca-check-plugin": "bin/check.js"
   },
   "scripts": {
     "test": "lab test/*.test.js -r console -v -L"
