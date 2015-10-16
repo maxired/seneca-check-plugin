@@ -1,43 +1,50 @@
 #!/usr/bin/env node
 
-var checkRepo = require('..').checkRepo
-var checkFolder = require('..').checkFolder
+var program = require('commander')
+
+var Check = require('..')
 
 var defaultRepo = 'maxired/seneca-skeleton'
 
-var checkMethod = checkRepo
+program
+  .version('0.0.1')
+  .usage('[options] TOCHECK')
+  .option('-m,--model <model>', 'The Repo we will check TOCHECK against', defaultRepo)
+  .option('-f,--fix', 'Should we try to automattically solve some issues')
+  .on('--help', function () {
+    console.log('  Syntax for MODEL and TOCHECK :')
+    console.log('    MODEL AND TOCHECK are github repository identifiant. They should follow the syntax Username/Repo.')
+    console.log('    For example, the defaut MODEL is', defaultRepo)
+    console.log('    It corresponds to the repo %s from user %s', defaultRepo.split('/')[1], defaultRepo.split('/')[0])
+    console.log('    And can be access at https://github.com/%s', defaultRepo)
+    console.log('')
+    console.log('    if TOCHECK equal "continue", then the last check will be continued')
+    console.log('')
+    console.log('  Examples :')
+    console.log('    seneca-check-plugin senecajs/seneca-level-store')
+    console.log('    seneca-check-plugin continue')
+    console.log('')
+  })
+  .parse(process.argv)
 
-function printHelp () {
-  console.log('Usage: seneca-check-plugin [OPTION]... MODEL TOCHECK')
-  console.log('   Or: seneca-check-plugin [OPTION]... TOCHECK')
-  console.log('   Or: seneca-check-plugin continue')
-  console.log('Check if TOCHECK is based on same parameters than MODEL. If model is not defined, default model is', defaultRepo, '\n')
-
-  console.log('Syntax for MODEL and TOCHECK :')
-  console.log('MODEL AND TOCHECK are github repository identifiant. They should follow the syntax Username/Repo.')
-  console.log('For example, the defaut MODEL is', defaultRepo)
-  console.log('It corresponds to the repo %s from user %s', defaultRepo.split('/')[1], defaultRepo.split('/')[0])
-  console.log('And can be access at https://github.com/%s', defaultRepo)
+if (program.args.length !== 1) {
+  program.help()
 }
 
-if (process.argv.length !== 3 && process.argv.length !== 4) {
-  printHelp()
-  process.exit(1)
-}
+var tocheck = program.args[0]
+var orig = program.model
 
-var orig = process.argv.length === 4 ? process.argv[2] : defaultRepo
-var tocheck = process.argv[process.argv.length - 1]
+var check = Check({fix: program.fix})
 
-if (process.argv.length === 3) {
-  if (process.argv[2] === '-h' || process.argv[2] === '--help' || process.argv[2].indexOf('/') === -1) {
-    if (process.argv[2] === 'continue') {
-      checkMethod = checkFolder
-      orig = 'default'
-      tocheck = 'to-check'
-    } else {
-      printHelp()
-      process.exit(1)
-    }
+var checkMethod = check.checkRepo
+
+if (tocheck === 'continue') {
+  checkMethod = check.checkFolder
+  orig = 'default'
+  tocheck = 'to-check'
+} else {
+  if (tocheck.split('/').length !== 2) {
+    program.help()
   }
 }
 
