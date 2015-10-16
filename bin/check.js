@@ -25,6 +25,9 @@ if (process.argv.length !== 3 && process.argv.length !== 4) {
   process.exit(1)
 }
 
+var orig = process.argv.length === 4 ? process.argv[2] : defaultRepo
+var tocheck = process.argv[process.argv.length - 1]
+
 if (process.argv.length === 3) {
   if (process.argv[2] === '-h' || process.argv[2] === '--help' || process.argv[2].indexOf('/') === -1) {
     if (process.argv[2] === 'continue') {
@@ -37,9 +40,6 @@ if (process.argv.length === 3) {
     }
   }
 }
-
-var orig = process.argv.length === 4 ? process.argv[2] : defaultRepo
-var tocheck = process.argv[process.argv.length - 1]
 
 checkMethod(orig, tocheck, function (err, good) {
   if (err) {
