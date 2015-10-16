@@ -56,6 +56,35 @@ Proceed the same way as long as your have error.
 Then, it says that your project is good. this is ONLY REGARDING BASIC ATTRIBUTES
 **If you change anything to your code, or package.json, please run `npm install` and `npm test` before going further**
 
+
+## More Info ?
+
+```
+
+seneca-check-plugin --help
+
+ Usage: seneca-check-plugin [options] TOCHECK
+
+ Options:
+
+   -h, --help          output usage information
+   -V, --version       output the version number
+   -m,--model <model>  The Repo we will check TOCHECK against
+   -f,--fix            Should we try to automattically solve some issues
+
+ Syntax for MODEL and TOCHECK :
+   MODEL AND TOCHECK are github repository identifiant. They should follow the syntax Username/Repo.
+   For example, the defaut MODEL is maxired/seneca-skeleton
+   It corresponds to the repo seneca-skeleton from user maxired
+   And can be access at https://github.com/maxired/seneca-skeleton
+
+   if TOCHECK equal "continue", then the last check will be continued
+
+ Examples :
+   seneca-check-plugin senecajs/seneca-level-store
+   seneca-check-plugin continue
+
+```
 ## Contributing
 The [Senecajs org][] encourages open participation. If you feel you can help in any way, be it with
 documentation, examples, extra testing, or new features please get in touch.
